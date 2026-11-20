@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>AI Based RO Water System Dashboard</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container" id="container">
+        <!-- Content injected by JavaScript -->
+    </div>
+    <script>
+        var emailContact = "your@email.com"; // Set your actual email address here
+
+        // Data for all coolers
+        var coolerInfo = {
+            location01A: { video: "https://www.youtube.com/embed/tgbNymZ7vqY", title: "Location-01 : Left Wing, G-Floor", waterLevel: "30 Litre", safety: "Green", waterTemp: "20", systemWorking: "OK" },
+            location02A: { video: "https://www.youtube.com/embed/5qap5aO4i9A", title: "Location-02 : Right Wing, G-Floor", waterLevel: "25 Litre", safety: "Green", waterTemp: "19", systemWorking: "OK" },
+            location01B: { video: "https://www.youtube.com/embed/tgbNymZ7vqY", title: "Location-01 : Left Wing", waterLevel: "20 Litre", safety: "Green", waterTemp: "21", systemWorking: "OK" },
+            location02B: { video: "https://www.youtube.com/embed/5qap5aO4i9A", title: "Location-02 : Right Wing", waterLevel: "23 Litre", safety: "Green", waterTemp: "20", systemWorking: "OK" },
+            location01C: { video: "https://www.youtube.com/embed/tgbNymZ7vqY", title: "Location-01 : Left Wing", waterLevel: "20 Litre", safety: "Green", waterTemp: "22", systemWorking: "OK" },
+            location02C: { video: "https://www.youtube.com/embed/5qap5aO4i9A", title: "Location-02 : Right Wing", waterLevel: "33 Litre", safety: "Green", waterTemp: "27", systemWorking: "OK" },
+            location01D: { video: "https://www.youtube.com/embed/tgbNymZ7vqY", title: "Location-01 : Left Wing", waterLevel: "40 Litre", safety: "Green", waterTemp: "21", systemWorking: "OK" },
+            location02D: { video: "https://www.youtube.com/embed/5qap5aO4i9A", title: "Location-02 : Right Wing", waterLevel: "35 Litre", safety: "Green", waterTemp: "27", systemWorking: "OK" }
+        };
+
+        // Dashboard HTML
+        function showDashboard() {
+            document.getElementById("container").innerHTML = `
+                <div class="header">
+                    AI Based RO Water System with Auto Adjustable Temp, Child Safe Environment &amp; Central Water Requirements Prediction
+                </div>
+                <div class="main-title">Main Dashboard</div>
+                <div class="dashboard-section">
+                    <table class="dashboard-table">
+                        <tr>
+                            <td>Main Tank Water Level</td>
+                            <td class="water-level">230 Liters</td>
+                        </tr>
+                        <tr>
+                            <td>Over All Safety Indicator</td>
+                            <td class="indicator">Green</td>
+                        </tr>
+                    </table>
+                </div>
+                <div class="sub-title">Individual Locations</div>
+                <div class="locations-section">
+                    <div class="locations-grid">
+                        ${[
+                            ["location01A", "location02A"],
+                            ["location01B", "location02B"],
+                            ["location01C", "location02C"],
+                            ["location01D", "location02D"]
+                        ].map(pair => `
+                            ${pair.map(id => {
+                                let info = coolerInfo[id];
+                                return `
+                                <div class="location-card">
+                                    <div class="location-title">${info.title}</div>
+                                    <table class="location-status-table">
+                                        <tr><td>Water Level</td><td class="data-cell">${info.waterLevel}</td></tr>
+                                        <tr><td>Safety</td><td class="data-cell green">${info.safety}</td></tr>
+                                        <tr><td>Water Temperature</td><td class="data-cell">${info.waterTemp}</td></tr>
+                                        <tr><td>System Working</td><td class="data-cell ok">${info.systemWorking}</td></tr>
+                                    </table>
+                                    <button class="show-live-btn" onclick="showCooler('${id}')">Show Live</button>
+                                </div>
+                                `
+                            }).join('')}
+                        `).join('')}
+                    </div>
+                </div>
+                <button onclick="showAboutUs()" class="about-btn">About Us</button>
+            `;
+        }
+
+        // Live view for a single cooler
+        function showCooler(id) {
+            let info = coolerInfo[id];
+            document.getElementById("container").innerHTML = `
+                <div class="header">
+                    AI Based RO Water System with Auto Adjustable Temp, Child Safe Environment &amp; Central Water Requirements Prediction
+                </div>
+                <div class="main-title">${info.title} - Live View</div>
+                <div class="live-video-container">
+                    <iframe width="480" height="270" src="${info.video}" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+                </div>
+                <div class="cooler-details">
+                    <table class="location-status-table">
+                        <tr><td>Water Level</td><td class="data-cell">${info.waterLevel}</td></tr>
+                        <tr><td>Safety</td><td class="data-cell green">${info.safety}</td></tr>
+                        <tr><td>Water Temperature</td><td class="data-cell">${info.waterTemp}</td></tr>
+                        <tr><td>System Working</td><td class="data-cell ok">${info.systemWorking}</td></tr>
+                    </table>
+                </div>
+                <button onclick="showDashboard()" class="show-live-btn" style="max-width:220px;margin:0 auto;">Back to Dashboard</button>
+            `;
+        }
+
+        // About Us page
+        function showAboutUs() {
+            document.getElementById("container").innerHTML = `
+                <div class="header">
+                    About Us
+                </div>
+                <div class="main-title">AI Based RO Water System</div>
+                <div class="about-section">
+                    <p>
+                        This project provides a central dashboard for monitoring RO water systems.<br>
+                        Features include live cooler data, safety and temperature monitoring, and easy access for school environments.
+                    </p>
+                    <p>
+                        <strong>Contact:</strong><br>
+                        Email: <a href="mailto:${emailContact}" style="color:#e28535;">${emailContact}</a><br>
+                        Mobile: <a href="tel:7050396586" style="color:#e28535;">7050396586</a>
+                    </p>
+                </div>
+                <button onclick="showDashboard()" class="show-live-btn" style="max-width:220px;margin:0 auto;">Back to Dashboard</button>
+            `;
+        }
+
+        showDashboard();
+    </script>
+</body>
+</html>

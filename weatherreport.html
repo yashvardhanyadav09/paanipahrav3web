@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Jal Trinetra: Local Weather</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="header"    id="title">
+        Jal Trinetra: Local Weather
+    </div>
+
+    <div class="container" id="container">
+        <!-- Content injected by JavaScript -->
+         <div>
+            <h2 id="cityName"> Test     </h2>
+            <p> Latitude :   <span id="cityLat">     </span>   </p>
+            <p> Longitude :  <span id="cityLong">    </span>   </p>
+            <p> Temperature: <span id="temp">        </span> °C</p>
+            <p> Condition:   <span id="desc">        </span>   </p>
+        </div>
+    </div>
+
+    <div class="forecast" id ="forecast">
+        <!-- Content injected by JavaScript --> 
+    </div>
+
+    <a href="maindashboard.html" class="show-live-btn" style="max-width:220px;margin:10px auto;display:block;text-align:center;">
+        Back To Main Dashboard
+    </a>
+    <script src="main.js"></script>
+    <script src="weather.js"></script>
+    <!-- <script>      
+        // Run after HTML is loaded
+        window.onload = function () 
+                        {
+                            loadWeather();
+                            loadNext3Days();
+                        };
+
+    </script> -->
+    <script>
+     window.addEventListener('load', () => {
+        loadWeather();
+        loadNext3Days();
+      });
+</script>
+</body>
+</html>
